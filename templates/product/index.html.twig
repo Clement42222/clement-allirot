@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="container my-5">
+		{% if product %}
+			<div class="row">
+				<div class="col-md-6">
+					<img src="/uploads/{{ product.illustration }}" class="img-fluid mb-3">
+				</div>
+				<div class="col-md-6">
+					<small>
+						<i>
+							<a href="{{ path('app_category', {slug: product.category.slug}) }}">
+								{{ product.category.name }}</a>
+							>
+							{{ product.name }}
+						</i>
+					</small>
+
+					<h1>{{ product.name }}</h1>
+					<span class="d-block mb-3">{{ product.pricewt | price }}</span>
+
+					{% set description = product.description %}
+					{% if description|length > 240 %}
+						{% set description = description|slice(0, 240) ~ '...' %}
+					{% else %}
+						{% set description = description%}
+					{% endif %}
+
+					{{ description | raw }}
+
+
+					<a href="#" data-bs-toggle="modal" data-bs-target="#ea-text-editor-01J038E0RRR650AE4Y3HSQG2TR">
+						<i class="far fa-file-alt"></i>
+						Voir la description complète
+					</a>
+
+
+					<!-- La modal -->
+					<div class="modal fade" id="ea-text-editor-01J038E0RRR650AE4Y3HSQG2TR" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Description complète</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<div
+									class="modal-body">
+									<!-- contenu de modal ici -->
+									{{ product.description | raw }}
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<button type="button" class="btn btn-success w-100 mt-3">Ajouter au panier</button>
+
+				</div>
+			</div>
+		{% else %}
+			<p>Pas de produit trouvé ...</p>
+		{% endif %}
+	</div>
+{% endblock %}
