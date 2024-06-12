@@ -29,12 +29,14 @@
 					<div class="collapse navbar-collapse" id="navbarCollapse">
 						<ul class="navbar-nav me-auto mb-2 mb-md-0">
 							<li class="nav-item">
-<a class="nav-link active" aria-current="page" href="{{ path("app_home") }}">Accueil</a>
+								<a class="nav-link {% if app.request.get('_route') == 'app_home' %} active {%endif %}" aria-current="page" href="{{ path("app_home") }}">Accueil</a>
 
 							</li>
 							{% for category in allCategories %}
 								<li class="nav-item">
-									<a class="nav-link" href="{{ path('app_category', { slug: category.slug }) }}">{{ category }}</a>
+									<a class="nav-link {% if app.request.get('_route') == 'app_category' and app.request.get('slug') == category.slug %} active {%endif %}" href="{{ path('app_category', { slug: category.slug }) }}">
+										{{ category }}
+									</a>
 								</li>
 							{% endfor %}
 						</ul>
@@ -49,8 +51,9 @@
 								</a>
 							{% endif %}
 
-							<a href="">
+							<a href="{{ path('app_cart') }}">
 								<i data-feather="shopping-cart"></i>
+								<span class="badge text-bg-light">{{ fullCartQuantity }}</span>
 							</a>
 						</div>
 					</div>
