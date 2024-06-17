@@ -84,7 +84,7 @@ class Cart
 
         // erreur si cart n'existe pas en session
         if (!isset($cart)) {
-            return "error";
+            return 0;
         }
 
         //init la qty à 0;
@@ -108,7 +108,7 @@ class Cart
 
         // erreur si cart n'existe pas en session
         if (!isset($cart)) {
-            return "error";
+            return 0;
         }
 
         //init le prix with tax à 0;

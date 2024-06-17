@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Product;
 use App\Repository\ProductRepository;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -21,4 +23,17 @@ class ProductController extends AbstractController
             'product' => $product,
         ]);
     }
+
+    // //facon de recuperer le produit plus facilement avec MapEntity
+    // Auto Mapping
+    
+    // #[Route('/produit/{slug}', name: 'app_product')]
+    // public function index(#[MapEntity(slug: 'slug')] Product $product): Response{
+    //     if (!$product) {
+    //         return $this->redirectToRoute('app_home');
+    //     }
+    //     return $this->render('product/index.html.twig', [
+    //         'product' => $product,
+    //     ]);
+    // }
 }

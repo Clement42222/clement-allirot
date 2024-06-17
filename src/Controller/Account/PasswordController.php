@@ -1,27 +1,25 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Account;
 
-use App\Entity\User;
 use App\Form\PasswordUserType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
-class AccountController extends AbstractController
+class PasswordController extends AbstractController
 {
-    #[Route('/compte', name: 'app_account')]
-    public function index(): Response
+    private $entityManagerInterface;
+    public function __construct(EntityManagerInterface $entityManagerInterface)
     {
-        return $this->render('account/index.html.twig');
+        $this->entityManagerInterface = $entityManagerInterface;
     }
-
+    
     #[Route('/compte/modifier-mot-de-passe', name: 'app_account_modify_pwd')]
-    public function password(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManagerInterface): Response
+    public function index(Request $request, UserPasswordHasherInterface $passwordHasher): Response
     {
         // Get the currently authenticated user
         $user = $this->getUser();
@@ -32,10 +30,10 @@ class AccountController extends AbstractController
 
         $form->handleRequest($request); // ecouter la requete
 
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             //$data = $form->getData();
             //persist uniquement pour nouvel objet --> new User()
-            $entityManagerInterface->flush(); // mettre a jour bDD
+            $this->entityManagerInterface->flush(); // mettre a jour bDD
 
             //notification
             $this->addFlash(
@@ -44,7 +42,7 @@ class AccountController extends AbstractController
             );
         }
 
-        return $this->render('account/password.html.twig', [
+        return $this->render('account/password/index.html.twig', [
             'modifyPwd' => $form->createView()
         ]);
     }

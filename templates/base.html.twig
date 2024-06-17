@@ -68,6 +68,7 @@
 				<!-- Flash Messages -->
 				<div class="flash-messages">
 					{% for type, messages in app.flashes %}
+						{% set type = type == 'error' ? 'danger' : type %}
 						{% for message in messages %}
 							<div class="alert alert-{{ type }}">
 								{{ message }}
@@ -88,9 +89,6 @@
 					<a href="#">CGU</a>
 				</p>
 			</footer>
-		</main>
-
-		 <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-		 <script src="{{ asset('assets/js/global.js') }}"></script>
+		</body>
 	</body>
-</html>
+</html></main> <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script> <script src="{{ asset('assets/js/global.js') }}"></script></body></html>
