@@ -1,0 +1,17 @@
+{# 1. En attente de paiement
+     * 2. Paiement validé
+     * 3. Expédié #}
+
+{% if field.value == 1 %}
+	<span class="badge text-bg-secondary">
+		En attente de paiement
+	</span>
+{% elseif field.value == 2 %}
+	<span class="badge text-bg-success">
+		Payée
+	</span>
+{% elseif field.value == 3 %}
+	<span class="badge text-bg-success">
+		Expédié
+	</span>
+{% endif %}

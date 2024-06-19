@@ -101,7 +101,7 @@ class Product
     }
 
     //on peut appeler la propriété pricewt grâce à la fonction
-    public function getPriceWt() { //  WizzTax => Prix avec les taxes 
+    public function getPriceWt() { //  With Taxs => Prix avec les taxes 
         $coeff = 1 + ( $this->tva / 100 );
         
         return $coeff * $this->price;

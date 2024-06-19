@@ -2,6 +2,7 @@
 
 namespace App\Controller\Account;
 
+use App\Classe\Cart;
 use App\Entity\Address;
 use App\Form\AddressUserType;
 use App\Repository\AddressRepository;
@@ -66,7 +67,7 @@ class AddressController extends AbstractController
         defaults: ['id' => null] --> déclare donc une valeur par défaut au param id
     */
     #[Route('/compte/adress/ajouter/{id}', name: 'app_account_address_form', defaults: ['id' => null])]
-    public function form(Request $request, $id, AddressRepository $addressRepository): Response
+    public function form(Request $request, $id, AddressRepository $addressRepository, Cart $cart): Response
     {
         if ($id) {
             // modification adresse existante
@@ -107,6 +108,12 @@ class AddressController extends AbstractController
                 'Votre adresse est correctement sauvegardée'
             );
 
+            // si l'user a des produits dans son panier
+            if ($cart->fullQuantity() > 0){
+                // je le redirige vers sa commande
+                return $this->redirectToRoute('app_order');
+            }
+            
             return $this->redirectToRoute('app_account_addresses');
         }
 
