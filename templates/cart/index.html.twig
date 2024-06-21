@@ -15,8 +15,8 @@
 
 						<div class="col-md-4">
 							<strong>{{ product.object.name }}</strong>
-							<span class="d-block small">Prix Unitaire :
-								{{ product.object.pricewt | price }}</span>
+							<span class="d-block small">Prix Unitaire HT :
+								{{ product.object.price | price }}</span>
 						</div>
 
 						<div class="col-md-3 text-right">
@@ -29,7 +29,10 @@
 						</div>
 
 						<div class="col-md-3">
+							<small>Prix TTC :
+							</small>
 							<strong>{{ (product.qty * product.object.pricewt) | price }}</strong>
+
 						</div>
 					</div>
 				{% endfor %}
@@ -41,6 +44,16 @@
 					<div class="d-flex justify-content-between">
 						<span class="fw-bold">Total Produit</span>
 						<span>{{ fullCartQuantity }}</span>
+					</div>
+
+					<div class="d-flex justify-content-between mt-3">
+						<span class="fw-bold">Prix Total HT</span>
+						<span>{{ totalHt | price }}</span>
+					</div>
+
+					<div class="d-flex justify-content-between mt-3">
+						<span class="fw-bold">Prix Total TVA</span>
+						<span>{{ (totalWt - totalHt) | price }}</span>
 					</div>
 
 					<div class="d-flex justify-content-between mt-3">

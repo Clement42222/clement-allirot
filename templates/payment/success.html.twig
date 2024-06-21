@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="container my-5 text-center">
+		<img src="/assets/img/check.png" style="max-height: 80px" alt="Commande confirmée">
+		<br>
+		<h1 class="mb-4">Merci pour votre commande</h1>
+
+		<a href="{{ path('app_account_order', {id_order:order.id}) }}" class="btn btn-success">Consulter ma commande</a>
+
+
+	</div>
+{% endblock %}

@@ -18,6 +18,8 @@
 		{{ order.createdAt | date('d/m/Y') }}</span>
 	<br>
 
+	<span>Stripe Session Id : {{ order.stripeSessionId }}</span>
+
 	<div class="row mt-4 mb-4">
 		<div class="col-md-6">
 			<strong>Adresse de livraison</strong><br/>
@@ -69,8 +71,8 @@
 	</table>
 
     <div class="text-right fs-5">
-        <strong>Total H.T: </strong> {{ order.totalWt }} <br>
+        <strong>Total H.T: </strong> {{ order.totalHt | price }} <br>
         <strong>Total T.V.A : </strong> {{ order.totalTva }} <br>
-        <strong>Total T.T.C : </strong> {{ order.totalHt | price }}
+        <strong>Total T.T.C : </strong> {{ order.totalWt }}
     </div>
 {% endblock %}

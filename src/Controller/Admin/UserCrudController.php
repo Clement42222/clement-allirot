@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -28,10 +29,19 @@ class UserCrudController extends AbstractCrudController
     // Gérer champs visibles / configurables (Créer / Modifier / Affichage)
     public function configureFields(string $pageName): iterable
     {
+        //onlyOnIndex() --> uniquement visible sur page Index liste
+        //onlyOnForms() --> uniquement visible dans les formulaires
         return [
             TextField::new('firstname')->setLabel('Prénom'),
             TextField::new('lastname')->setLabel('Nom'),
-            TextField::new('email')->setLabel('Email')->onlyOnIndex() // uniquement en affichage sur liste Affichage
+            TextField::new('email')->setLabel('Email'),
+            ChoiceField::new('roles')
+                ->setLabel('Rôle')
+                ->setChoices([
+                    'Administrateur' => 'ROLE_ADMIN'
+                ])
+                ->renderExpanded(true)
+                ->allowMultipleChoices()
         ];
     }
 }

@@ -99,6 +99,31 @@ class Cart
     }
 
     /*
+        Fonction retournant le prix HT total des produits au panier
+    */
+    public function getTotalHt()
+    {
+
+        // obtenir la session en cours
+        $cart = $this->getCart();
+
+        // erreur si cart n'existe pas en session
+        if (!isset($cart)) {
+            return 0;
+        }
+
+        //init le prix with tax à 0;
+        $totalHt = 0;
+
+        // foreach les cart pour ajouter toutes les qty à $qty
+        foreach ($cart as $value) {
+            $totalHt += ($value['object']->getPrice() * $value['qty']);
+        }
+
+        return $totalHt;
+    }
+
+    /*
         Fonction retournant le prix TTC total des produits au panier
     */
     public function getTotalWt(){
