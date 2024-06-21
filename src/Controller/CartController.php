@@ -44,7 +44,8 @@ class CartController extends AbstractController
 
         $this->addFlash(
             'success',
-            'Produit correctement ajouté à votre panier'
+            'Produit correctement ajouté à votre ' .
+            '<a href="' . $this->generateUrl('app_cart') . '">panier</a>'
         );
 
         return $this->redirect($referer);

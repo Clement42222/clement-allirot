@@ -71,7 +71,7 @@
 						{% set type = type == 'error' ? 'danger' : type %}
 						{% for message in messages %}
 							<div class="alert alert-{{ type }}">
-								{{ message }}
+								{{ message | raw }}
 							</div>
 						{% endfor %}
 					{% endfor %}

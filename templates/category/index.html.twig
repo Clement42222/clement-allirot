@@ -5,7 +5,12 @@
 		<h1>{{ category.name }}</h1>
 		<p>Cette catégorie contient
 			{{ category.products | length }}
-			produit(s)</p>
+			{% if category.products | length > 1 %}
+				produits
+			{% else %}
+				produit
+			{% endif %}
+		</p>
 
 		<div class="row">
 			{% for product in category.products %}
@@ -16,6 +21,9 @@
 					</a>
 
 					<span class="d-block">{{ product.pricewt | price }}</span>
+
+					<a href="{{ path('app_cart_add', {id:product.id}) }}" 
+					class="btn btn-success img-fluid w-100 mt-2 mb-4">Ajouter au panier</a>
 				</div>
 			{% endfor %}
 		</div>
