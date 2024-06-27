@@ -1,8 +1,5 @@
-# symfony-boutique
-Formation Symfony Udemy - 2024 (Site La Boutique Française)...
-
-# lien-formation
-https://www.udemy.com/course/apprendre-symfony-par-la-creation-dun-site-ecommerce/?couponCode=KEEPLEARNING
+# clement-allirot
+Boutique en ligne - Symfony 2024
 
 # prérequis
 Avoir un compte Stripe :
@@ -22,3 +19,6 @@ cp .env.test .env
 https://symfony.com/doc/current/index.html
 https://twig.symfony.com/doc/2.x/
 https://getbootstrap.com/docs/5.3/getting-started/introduction/
+
+# lien-formation
+https://www.udemy.com/course/apprendre-symfony-par-la-creation-dun-site-ecommerce/?couponCode=KEEPLEARNING
