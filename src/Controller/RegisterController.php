@@ -41,7 +41,7 @@ class RegisterController extends AbstractController
             $mail->send(
                 $user->getEmail(),
                 $user->getFirstname() . ' ' . $user->getLastname(),
-                "Bienvenue sur la Boutique Française",
+                "Bienvenue sur la boutique de Clément",
                 "welcome.html",
                 $vars
             );
