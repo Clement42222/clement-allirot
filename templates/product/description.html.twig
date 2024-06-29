@@ -1,0 +1,45 @@
+{% if description and slug and limit %}
+
+	{% set descriptionInit = description %}
+	{% set inLimit = true %}
+
+	{% if visible %}
+		{% if description|length > limit and limit != -1 %}
+			{% set description = description|slice(0, limit) %}
+		{% else %}
+			{% set description = description %}
+			{% set inLimit = false %}
+		{% endif %}
+		{{ description | striptags | description }}
+	{% endif %}
+<br><br>
+	{% if inLimit %}
+		<a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#{{ slug }}">
+			<i class="far fa-file-alt"></i>
+			<span class="d-block fw-bold text-black">Voir la description complète</span>
+		</a>
+	{% endif %}
+
+
+	<!-- La modal -->
+	<div class="modal fade" id="{{ slug }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Description complète</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div
+					class="modal-body">
+					<!-- contenu de modal ici -->
+					{{ descriptionInit | raw }}
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+{% endif %}

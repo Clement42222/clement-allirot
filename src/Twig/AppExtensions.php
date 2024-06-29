@@ -22,13 +22,30 @@ class AppExtensions extends AbstractExtension implements GlobalsInterface
     public function getFilters()
     {
         return [
-            new TwigFilter('price', [$this, 'formatPrice']) // nom filtre / nom fonction
+            new TwigFilter('price', [$this, 'formatPrice']), // nom filtre / nom fonction
+            new TwigFilter('description', [$this, 'formatDescription']),
         ];
     }
 
-    public function formatPrice($number) //number est la valeur avant l'appel du filtre
+    public function formatPrice($price) //price est la valeur avant l'appel du filtre
     {
-        return number_format($number, '2', ',') . ' €';
+        return number_format($price, '2', ',') . ' €';
+    }
+
+    public function formatDescription($description)
+    {
+        if ($description && strpos($description, '&nbsp;') !== false) {
+            // Rechercher les occurrences de &nbsp;
+            $parts = explode('&nbsp;', $description);
+
+            // Prendre seulement la première partie avant chaque &nbsp;
+            $description = reset($parts);
+        }
+
+        $description .= "...";
+
+
+        return $description;
     }
 
     //créer variables globals a utiliser partout dans environment twig
