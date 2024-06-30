@@ -1,4 +1,4 @@
-# clement-allirot
+# la-boutique-de-clement
 
 Boutique en ligne - Symfony 2024
 
