@@ -58,7 +58,7 @@
 	</div>
 
 	<!-- Marketing messaging and featurettes
-																================================================== -->
+																						================================================== -->
 	<!-- Wrap the rest of the page in another container to center all the content. -->
 
 	<div
@@ -67,34 +67,37 @@
 		<!-- Three columns of text below the carousel -->
 		<div class="row">
 			{% for product in productsInHomepage %}
-				<div class="col-lg-4 mt-2">
+				<div class="col-lg-4 mt-2 ">
 					<a title="{{ product.name }}" href="{{ path('app_product', { slug: product.slug }) }}">
 						<img src="/uploads/{{product.illustration}}" alt="{{ product.name }}" class="img-fluid"/>
 					</a>
 
-					<title>{{product.name}}</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
+					<title class="">{{product.name}}</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
 
-				<h2 class="fw-normal mt-2">{{product.name}}</h2>
-				<hr>
+				<div class="row">
+					<div class="col-md-12 mt-1 text-center">
+						{{ product.name }}
+						<br>
+						<b>{{ product.priceWt | price }}</b>
+					</div>
+				</div>
 
-				{% include 'product/description.html.twig' with {
-							'description': product.description,
-							'slug' : product.slug,
-							'limit' : 100,
-							'visible' : true
-					}  %}
-
-				<hr>
-				<p>
-					<a class="btn btn-secondary" href="{{ path('app_product', { slug: product.slug }) }}">Découvrir &raquo;</a>
-				</p>
+				{# {% include 'product/description.html.twig' with {
+										'description': product.description,
+										'slug' : product.slug,
+										'limit' : 100,
+										'visible' : true
+								}  %} #}
+				{# <p>
+					<a href="{{ path('app_cart_add', {id:product.id}) }}" class="btn btn-light img-fluid w-50 mt-1 mb-1">Ajouter au panier</a>
+				</p> #}
 			</div>
 		{% endfor %}
 	</div>
 	<!-- /.row -->
 
 
-	<!-- START THE FEATURETTES -->
+{# <!-- START THE FEATURETTES -->
 
 	<hr class="featurette-divider">
 
@@ -145,9 +148,9 @@
 	</div>
 
 	<hr
-	class="featurette-divider">
+	class="featurette-divider"> #}
 
-<!-- /END THE FEATURETTES -->
+	<!-- /END THE FEATURETTES -->
 
 </div>
 <!-- /.container -->{% endblock %}

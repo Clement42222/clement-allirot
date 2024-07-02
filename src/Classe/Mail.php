@@ -25,8 +25,8 @@ class Mail
             'Messages' => [
                 [
                     'From' => [
-                        'Email' => "callirot@nexton-group.com",
-                        'Name' => "Clément"
+                        'Email' => $_ENV['MAILJET_EMAIL'],
+                        'Name' => $_ENV['MAILJET_NAME']
                     ],
                     'To' => [
                         [

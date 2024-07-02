@@ -19,7 +19,7 @@ class AppExtensions extends AbstractExtension implements GlobalsInterface
         $this->cart = $cart;
     }
 
-    public function getFilters()
+    public function getFilters() : array
     {
         return [
             new TwigFilter('price', [$this, 'formatPrice']), // nom filtre / nom fonction
