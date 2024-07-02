@@ -23,4 +23,5 @@
 ###> symfony/asset-mapper ###
 /public/assets/
 /assets/vendor/
+assets/illustrations/favicon
 ###< symfony/asset-mapper ###
