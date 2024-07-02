@@ -62,6 +62,8 @@ cp .env.test .env
 
 7. Copier depuis le local le dosser "/public/bundles" et le coller dans le dossier "public_html/public/"
 
+8. Copier le dossier de "public/uploads" et le coller dans le dossier "public_html/public/"
+
 # Documentations
 
 https://symfony.com/doc/current/index.html

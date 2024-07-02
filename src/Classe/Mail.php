@@ -18,15 +18,19 @@ class Mail
                 $content = str_replace('{' . $key . '}', $var, $content);
             }
         }
+        $apikey = $_ENV['MAILJET_API_KEY'];
+        $secretKey = $_ENV['MAILJET_SECRET_KEY'];
+        $mailjetMail = $_ENV['MAILJET_EMAIL'];
+        $mailJetName = $_ENV['MAILJET_NAME'];
 
-        $mailJet = new Client($_ENV['MAILJET_API_KEY'], $_ENV['MAILJET_SECRET_KEY'], true, ['version' => 'v3.1']);
+        $mailJet = new Client($apikey, $secretKey, true, ['version' => 'v3.1']);
 
         $body = [
             'Messages' => [
                 [
                     'From' => [
-                        'Email' => $_ENV['MAILJET_EMAIL'],
-                        'Name' => $_ENV['MAILJET_NAME']
+                        'Email' => $mailjetMail,
+                        'Name' => $mailJetName
                     ],
                     'To' => [
                         [
@@ -34,7 +38,7 @@ class Mail
                             'Name' => $to_name
                         ]
                     ],
-                    'TemplateID' => 6081180, // Template crée sur MailJet
+                    'TemplateID' => 6103340, // Template crée sur MailJet
                     'TemplateLanguage' => true, // Toujours à true
                     'Subject' => $subject,
                     'Variables' => [
