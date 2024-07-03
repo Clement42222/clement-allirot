@@ -55,8 +55,7 @@ class CartController extends AbstractController
 
         $this->addFlash(
             'success',
-            'Produit correctement ajouté à votre ' .
-            '<a href="' . $this->generateUrl('app_cart') . '">panier</a>'
+            'Produit correctement ajouté à votre panier'
         );
 
         return $this->redirect($referer);
@@ -71,7 +70,7 @@ class CartController extends AbstractController
 
         $this->addFlash(
             'success',
-            'Produit correctement supprimé à votre panier'
+            'Produit correctement supprimé de votre panier'
         );
 
         return $this->redirectToRoute("app_cart");

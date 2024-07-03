@@ -16,10 +16,7 @@
 				</div>
 
 				{% if app.user.addresses | length == 0 %}
-					<p>
-						Vous n'avez pas encore créé d'adresse.
-					</p>
-
+					<div class="alert alert-info">Vous n'avez pas encore créé d'adresse.</div>
 				{% else %}
 					<div class="row">
 						{% for address in app.user.addresses %}

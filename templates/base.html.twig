@@ -45,6 +45,10 @@
 								<a href="{{ path('app_account') }}">
 									<i data-feather="user"></i>
 									{{ app.user.firstname }}</a>
+
+								<a title="Ma liste de souhait" href="{{ path('app_account_wishlist') }}">
+									<i data-feather="heart"></i>
+								</a>
 							{% else %}
 								<a href="{{ path('app_login') }}">
 									<i data-feather="user"></i>
@@ -91,4 +95,4 @@
 			</footer>
 		</body>
 	</body>
-</html></main> <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script> <script src="{{ asset('assets/js/global.js') }}"></script></body></html>
+</html></main> <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script> <script src="{{ asset('assets/js/global.js') }}"></script><!-- jQuery --> <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script><!-- Popper.js --> <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script><!-- Bootstrap JS --> <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script></body></html>
