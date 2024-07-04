@@ -15,7 +15,7 @@
 				©color: white;
 				font-size: 1.5em;
 				text-align: left;
-				text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Adjust the shadow */
+				text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 			}
 		</style>
 
@@ -31,9 +31,7 @@
 					<div class="container">
 						<div class="carousel-caption text-start ">
 							<div class="text-container">
-
 								<p style="font-size: 2em;">{{ header.title }}</p>
-
 								<p class="">{{ header.content | raw }}</p>
 							</div>
 							<br>
@@ -45,6 +43,7 @@
 				</div>
 			{% endfor %}
 		</div>
+
 		{% if headers|length > 1 %}
 			<button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
 				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -58,7 +57,7 @@
 	</div>
 
 	<!-- Marketing messaging and featurettes
-																								================================================== -->
+																										================================================== -->
 	<!-- Wrap the rest of the page in another container to center all the content. -->
 
 	<div
@@ -67,7 +66,7 @@
 		<!-- Three columns of text below the carousel -->
 		<div class="row">
 			{% for product in productsInHomepage %}
-				<div class="col-lg-4 mt-5">
+				<div class="col-lg-4 mt-3 container-product">
 					<a title="{{ product.name }}" href="{{ path('app_product', { slug: product.slug }) }}">
 						<img src="/uploads/{{product.illustration}}" alt="{{ product.name }}" class="img-fluid"/>
 					</a>
@@ -76,23 +75,16 @@
 
 				<div class="row">
 					<div class="col-md-12 mt-1 text-center">
-						{{ product.name }}
-						<br>
-						<b>{{ product.priceWt | price }}</b>
-						<hr>
-						<a class="btn btn-primary" href="{{ path('app_product', {slug: product.slug}) }}">Découvrir</a>
+						{% include 'wishlists/index.html.twig' with {
+							'linkStyle': 'margin-left: 10px;',
+							'divClass': 'd-flex align-items-center justify-content-center mt-3',
+							'collapse': false,
+					}  %}
+						<span class="d-block fw-bold text-black mt-2">{{ product.name }}</span>
+
+						<span class="d-block">{{ product.priceWt | price }}</span>
 					</div>
 				</div>
-
-				{# {% include 'product/description.html.twig' with {
-																		'description': product.description,
-																		'slug' : product.slug,
-																		'limit' : 100,
-																		'visible' : true
-																}  %} #}
-				{# <p>
-													<a href="{{ path('app_cart_add', {id:product.id}) }}" class="btn btn-light img-fluid w-50 mt-1 mb-1">Ajouter au panier</a>
-												</p> #}
 			</div>
 		{% endfor %}
 	</div>

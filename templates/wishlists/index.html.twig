@@ -1,0 +1,38 @@
+<div class="{{ divClass }}">
+	<a href="{{ path('app_cart_add', { id: product.id }) }}" type="button" class="btn btn-secondary w-50 justify-content-center">
+		Ajouter au panier <i data-feather="shopping-cart"></i>
+	</a>
+
+	<!-- Si utilisateur est connecté -->
+	{% if app.user %}
+		<!-- Si produit est dans ma wishlist -->
+		{% if product in app.user.wishlists %}
+			<a class="wishlist-icon heart-button" href="{{ path('app_account_wishlist_remove', {id: product.id}) }}" style="{{linkStyle}}">
+				<svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewbox="0 0 24 24" fill="#FF6F61" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
+					<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+				</svg>
+			</a>
+		{% else %}
+			<a class="wishlist-icon heart-button" href="{{ path('app_account_wishlist_add', {id: product.id}) }}" style="{{linkStyle}}">
+				<svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
+					<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+				</svg>
+			</a>
+		{% endif %}
+	{% else %}
+		<a class="wishlist-icon heart-button" {% if collapse %} data-toggle="collapse" aria-expanded="false" aria-controls="collapseWl" href="#collapseWl" {% else %} href="{{ path('app_login') }}" {% endif %} role="button" style="{{linkStyle}}">
+			<svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
+				<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+			</svg>
+		</a>
+	{% endif %}
+</div>
+
+<div class="collapse" id="collapseWl">
+	<div class="mt-2">
+		Pour utiliser les avantages de la Wishlist,
+		<a href="{{ path('app_login') }}">connectez-vous</a>
+		ou
+		<a href="{{ path('app_register') }}">créez votre compte client</a>.
+	</div>
+</div>

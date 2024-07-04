@@ -1,3 +1,9 @@
 {
-  "twiggy.framework": "ignore"
+  "twiggy.framework": "ignore",
+  "github.copilot.advanced": {},
+  "github.copilot.enable": {
+    "plaintext": "true",
+    "markdown": "true",
+    "scminput": "true"
+  }
 }

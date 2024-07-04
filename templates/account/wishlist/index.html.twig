@@ -12,7 +12,7 @@
 				{% if app.user.wishlists|length > 0 %}
 					<div class="row">
 						{% for product in app.user.wishlists %}
-							<div class="col-md-3 text-center mt-2">
+							<div class="col-md-3 text-center mt-2 mb-2">
 								<a href=" {{ path('app_product', { slug: product.slug }) }}" class="text-decoration-none">
 									<img src="/uploads/{{product.illustration}}" alt="{{ product.name }}" class="img-fluid"/>
 									<span class="d-block fw-bold text-black mt-2">{{ product.name }}</span>
