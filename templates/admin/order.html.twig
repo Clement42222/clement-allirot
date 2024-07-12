@@ -1,7 +1,20 @@
 {% extends '@!EasyAdmin/layout.html.twig' %}
 
 {% block main %}
-	<small><a href="{{ path('app_invoice_admin', {id_order: order.id}) }}" target="_blank" class="btn btn-light btn-sm">Voir/Imprimer la facture</a></small>
+
+	<h2>Agir sur la commande</h2>
+	{% if order.state != 1 %}
+		<a href="{{currentUrl}}&state=3" {% if order.state == 3%}style="display:none;"{% endif %} class="btn btn-warning">Commande en cours de préparation</a>
+		<a href="{{currentUrl}}&state=4" {% if order.state == 4%}style="display:none;"{% endif %} class="{% if order.state == 4%}display:none;{% endif %}btn btn-success">Commande expédiée</a>
+		<a href="{{currentUrl}}&state=5" {% if order.state == 5%}style="display:none;"{% endif %} class="{% if order.state == 5%}display:none;{% endif %}btn btn-danger">Commande annulée</a>
+	{% else %}
+		Vous ne pouvez pas agir sur une commande impayée.
+	{% endif %}
+
+	<hr>
+	<small>
+		<a href="{{ path('app_invoice_admin', {id_order: order.id}) }}" target="_blank" class="btn btn-light btn-sm">Voir/Imprimer la facture</a>
+	</small>
 	<h3 class="mt-2">Commande n°
 		{{ order.id }}</h3>
 	{{ include ('admin/state.html.twig', {
@@ -19,7 +32,8 @@
 		{{ order.createdAt | date('d/m/Y') }}</span>
 	<br>
 
-	<span>Stripe Session Id : {{ order.stripeSessionId }}</span>
+	<span>Stripe Session Id :
+		{{ order.stripeSessionId }}</span>
 
 	<div class="row mt-4 mb-4">
 		<div class="col-md-6">
@@ -71,9 +85,17 @@
 		</tbody>
 	</table>
 
-    <div class="text-right fs-5">
-        <strong>Total H.T: </strong> {{ order.totalHt | price }} <br>
-        <strong>Total T.V.A : </strong> {{ order.totalTva }} <br>
-        <strong>Total T.T.C : </strong> {{ order.totalWt }}
-    </div>
+	<div class="text-right fs-5">
+		<strong>Total H.T:
+		</strong>
+		{{ order.totalHt | price }}
+		<br>
+		<strong>Total T.V.A :
+		</strong>
+		{{ order.totalTva }}
+		<br>
+		<strong>Total T.T.C :
+		</strong>
+		{{ order.totalWt }}
+	</div>
 {% endblock %}

@@ -29,6 +29,11 @@ class CartController extends AbstractController
             );
         }
 
+        // Si panier vide --> reirection vers home page
+        if (empty($cart->getCart())) {
+            return $this->redirectToRoute('app_home');
+        }
+
         $isMobile = $this->mobileDetector->isMobile();
 
         return $this->render('cart/index.html.twig', [
@@ -58,7 +63,8 @@ class CartController extends AbstractController
             'Produit correctement ajouté à votre panier'
         );
 
-        return $this->redirect($referer);
+        //return $this->redirect($referer);
+        return $this->redirectToRoute('app_cart');
     }
 
     #[Route('/cart/decrease/{id}', name: 'app_cart_decrease')]
