@@ -21,12 +21,10 @@
 
 						<div class="col-md-3 text-right mt-1">
 
-							<a class="text-decoration-none text-black" href="{{ path('app_cart_decrease', { id: product.object.id }) }}">-</a>
-
-							<span class="badge text-bg-secondary">{{ product.qty }}
-							</span>
-							<a class="text-decoration-none text-black" href="{{ path('app_cart_add', { id: product.object.id }) }}">+</a>
-
+						<a class="btn btn-outline-primary btn-sm btn-custom-width" href="{{ path('app_cart_decrease', { id: product.object.id }) }}">-</a>
+						<span class="badge text-bg-secondary">{{ product.qty }}</span>
+						<a class="btn btn-outline-primary btn-sm btn-custom-width" href="{{ path('app_cart_add', { id: product.object.id }) }}">+</a>
+																		
 						</div>
 
 						<div class="col-md-3 mt-1">
