@@ -73,3 +73,7 @@ https://getbootstrap.com/docs/5.3/getting-started/introduction/
 # Lien formation
 
 https://www.udemy.com/course/apprendre-symfony-par-la-creation-dun-site-ecommerce/?couponCode=KEEPLEARNING
+
+Dépôt de la nouvelle version de la formation : https://gitlab.com/Mikaelhdx/la-boutique-francaise-2023-2024
+
+Dépôt de l'ancienne version de la formation : https://gitlab.com/Mikaelhdx/la-boutique-francaise
