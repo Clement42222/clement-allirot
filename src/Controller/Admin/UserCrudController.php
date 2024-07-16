@@ -37,10 +37,11 @@ class UserCrudController extends AbstractCrudController
             TextField::new('email')->setLabel('Email'),
             ChoiceField::new('roles')
                 ->setLabel('Rôle')
+                ->setHelp('Vous pouvez attribuer un rôle à cet utilisateur')
                 ->setChoices([
+                    'Utilisateur' => 'ROLE_USER',
                     'Administrateur' => 'ROLE_ADMIN'
                 ])
-                ->renderExpanded(true)
                 ->allowMultipleChoices()
         ];
     }
