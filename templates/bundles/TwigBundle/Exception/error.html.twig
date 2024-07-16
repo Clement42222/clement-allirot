@@ -1,29 +1,42 @@
 {% extends 'base.html.twig' %}
 
-    {% block body %}
-    <div class="container my-5">
-        {% if status_code == 404 %}
-            <h1> <span class="badge text-bg-info">Page Introuvable ({{ status_code }})</span></h1>
-            <p>La page que vous cherchez n'existe pas. <hr>
-                <a href="{{ path('app_home') }}">Retour à l'accueil</a>
-            </p>
-        {% elseif status_code == 500 %}
-            <h1> <span class="badge text-bg-danger">Erreur Serveur ({{ status_code }}) </span></h1>
-            <p>
-                <hr>
-                {{ exception.message }}
-            </p>
-            <pre><u>Plus d'informations :</u> <br><br>{{ exception }}</pre>
-            <pre>Fichiers log : /var/log/</pre>
-            <hr>
-            {% else %}
-                <h1>Erreur
-                    {{ status_code }}</h1>
-                <p>Une erreur est survenue, veuillez réessayer plus tard.
-                    <a href="{{ path('app_home') }}">Retour à l'accueil</a>
-                </p>
-            
-        </div>
-    
-      {% endif %} {% endblock %}
-    
+{% block body %}
+<div class="container my-5">
+	{% if env == 'prod' %}
+		<h1>Erreur</h1>
+		<p>Une erreur est survenue, veuillez réessayer plus tard.
+			<hr>
+			<a href="{{ path('app_home') }}">Retour à l'accueil</a>
+		</p>
+	{% else %}
+		{% if status_code == 404 %}
+			<h1>
+				<span class="badge text-bg-info">Page Introuvable ({{ status_code }})</span>
+			</h1>
+			<p>La page que vous cherchez n'existe pas.
+				<hr>
+				<a href="{{ path('app_home') }}">Retour à l'accueil</a>
+			</p>
+		{% elseif status_code == 500 %}
+			<h1>
+				<span class="badge text-bg-danger">Erreur Serveur ({{ status_code }})
+				</span>
+			</h1>
+			<p>
+				<hr>{{ exception.message }}
+			</p>
+			<pre><u>Plus d'informations :</u> <br><br>{{ exception }}</pre>
+                    <pre>Fichiers log : /var/log/</pre>
+                    <hr>
+                    
+        {% else %}
+            <h1><span class="badge text-bg-warning">Erreur {{ status_code }}</span></h1>
+		<p>
+            Vous n'êtes pas autorisé à accéder à cette page.
+			<hr>
+			<a href="{{ path('app_home') }}">Retour à l'accueil</a>
+		</p>
+        {% endif %}
+	{% endif %}
+    </div>
+{% endblock %}
