@@ -31,7 +31,7 @@ class LoginSubscriber implements EventSubscriberInterface
         $user = $this->security->getUser();
 
         // Enregistrer un message de journalisation
-        $this->logger->info('L\'utilisateur ' . $user->getFirstname() . ' s\'est connecté.');
+        $this->logger->notice('L\'utilisateur ' . $user->getFirstname() . ' s\'est connecté.');
 
         // Code pour mettre à jour la date de dernière connexion de l'utilisateur
         $user->setLastLoginAt(new \DateTime());

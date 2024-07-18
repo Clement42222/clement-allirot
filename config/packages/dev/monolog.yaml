@@ -1,0 +1,14 @@
+monolog:
+  handlers:
+    main:
+      type: stream
+      path: "%kernel.logs_dir%/%kernel.environment%.log"
+      level: notice
+      channels: ["!event"]
+
+    # Gestionnaire pour les logs de niveau critical
+    critical:
+      type: stream
+      path: "%kernel.logs_dir%/critical.log"
+      level: critical
+      channels: ["!event"]   
