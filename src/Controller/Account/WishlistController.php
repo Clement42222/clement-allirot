@@ -38,10 +38,10 @@ class WishlistController extends AbstractController
             //Sauvegarder en base de données
             $entityManagerInterface->flush();
 
-            $this->addFlash(
-                'success',
-                'Produit correctement ajouté à votre liste de souhait'
-            );
+            // $this->addFlash(
+            //     'success',
+            //     'Produit correctement ajouté à votre liste de souhait'
+            // );
         } else {
             $this->addFlash(
                 'danger',
@@ -64,10 +64,10 @@ class WishlistController extends AbstractController
 
         // Si produit existe
         if ($product) {
-            $this->addFlash(
-                'success',
-                'Produit correctement supprimé de votre liste de souhait'
-            );
+            // $this->addFlash(
+            //     'success',
+            //     'Produit correctement supprimé de votre liste de souhait'
+            // );
 
             //récupération utilisateur connecté
             $user = $this->getUser();

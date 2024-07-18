@@ -4,8 +4,14 @@
 	<div class="container my-5 container-product">
 		{% if product %}
 			<div class="row">
-				<div class="col-md-6">
-					<img src="/uploads/{{ product.illustration }}" class="img-fluid mb-3">
+				<div class="col-md-6 mb-2">
+					{% include 'wishlists/index.html.twig' with {
+							'linkStyle': 'padding-left: 6px;',
+							'divClass': 'd-flex mt-1',
+							'collapse': true,
+							'btnAddToCart': false,
+							'productsInCart': productsInCart,
+					}  %}
 				</div>
 				<div class="col-md-6">
 					<small>
@@ -19,18 +25,11 @@
 
 					<h1>{{ product.name }}</h1>
 					<span class="d-block mb-3">{{ product.pricewt | price }}</span>
-
 					{% include 'product/description.html.twig' with {
 							'description': product.description,
 							'slug' : product.slug,
 							'limit' : 300,
 							'visible' : true
-					}  %}
-
-					{% include 'wishlists/index.html.twig' with {
-							'linkStyle': 'padding-left:7px;',
-							'divClass': 'd-flex align-items-center justify-content-between mt-3',
-							'collapse': true,
 					}  %}
 
 				</div>

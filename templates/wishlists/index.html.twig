@@ -1,19 +1,43 @@
-<div class="{{ divClass }}">
-	<a href="{{ path('app_cart_add', { id: product.id }) }}" type="button" class="btn btn-secondary w-50 justify-content-center">
-		Ajouter au panier <i data-feather="shopping-cart"></i>
+<div style="position:relative;">
+	<a title="{{ product.name }}" href="{{ path('app_product', { slug: product.slug }) }}">
+		<img src="/uploads/{{product.illustration}}" alt="{{ product.name }}" class="img-fluid"/>
 	</a>
+
+	<title class="">{{product.name}}</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
+
+
+<div class="buttons-img-product">
+
+	{% if btnAddToCart %}
+		<a href="{{ path('app_cart_add', { id: product.id }) }}#product-{{ product.id }}" type="button" class="btn btn-secondary w-50 justify-content-center">
+			Ajouter au panier
+			<i data-feather="shopping-cart"></i>
+		</a>
+	{% else %}
+		{% if productsInCart is defined %}
+			{% if product.id in productsInCart %}
+				<a class="cart-icon cart-button" href="{{ path('app_cart_remove_product', {id: product.id, is_referer:true}) }}#product-{{ product.id }}" style="{{linkStyle}}">
+					<i class="feather-cart-icon" style="fill: red;" data-feather="shopping-cart"></i>
+				</a>
+			{% else %}
+				<a class="cart-icon cart-button" href="{{ path('app_cart_add', {id: product.id, is_referer:true}) }}#product-{{ product.id }}" style="{{linkStyle}}">
+					<i class="feather-cart-icon" data-feather="shopping-cart"></i>
+				</a>
+			{% endif %}
+		{% endif %}
+	{% endif %}
 
 	<!-- Si utilisateur est connecté -->
 	{% if app.user %}
 		<!-- Si produit est dans ma wishlist -->
 		{% if product in app.user.wishlists %}
-			<a class="wishlist-icon heart-button" href="{{ path('app_account_wishlist_remove', {id: product.id}) }}" style="{{linkStyle}}">
+			<a class="wishlist-icon heart-button" href="{{ path('app_account_wishlist_remove', {id: product.id}) }}#product-{{ product.id }}" style="{{linkStyle}}">
 				<svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewbox="0 0 24 24" fill="#FF6F61" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
 					<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
 				</svg>
 			</a>
 		{% else %}
-			<a class="wishlist-icon heart-button" href="{{ path('app_account_wishlist_add', {id: product.id}) }}" style="{{linkStyle}}">
+			<a class="wishlist-icon heart-button" href="{{ path('app_account_wishlist_add', {id: product.id}) }}#product-{{ product.id }}" style="{{linkStyle}}">
 				<svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
 					<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
 				</svg>
@@ -35,4 +59,4 @@
 		ou
 		<a href="{{ path('app_register') }}">créez votre compte client</a>.
 	</div>
-</div>
+</div></div>

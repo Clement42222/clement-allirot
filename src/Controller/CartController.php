@@ -44,9 +44,10 @@ class CartController extends AbstractController
         ]);
     }
 
-    #[Route('/cart/add/{id}', name: 'app_cart_add')]
+    #[Route('/cart/add/{id}/{is_referer}', name: 'app_cart_add', defaults: ['is_referer' => false])]
     public function add(
         $id,
+        $is_referer,
         Cart $cart,
         ProductRepository $productRepository,
         Request $request
@@ -58,28 +59,54 @@ class CartController extends AbstractController
 
         $cart->add($product);
 
-        $this->addFlash(
-            'success',
-            'Produit correctement ajouté à votre panier'
-        );
+        // $this->addFlash(
+        //     'success',
+        //     'Produit correctement ajouté à votre panier'
+        // );
 
-        //return $this->redirect($referer);
+        if ($is_referer) {
+            return $this->redirect($referer);
+        }
         return $this->redirectToRoute('app_cart');
     }
 
-    #[Route('/cart/decrease/{id}', name: 'app_cart_decrease')]
+    #[Route('/cart/decrease/{id}/{is_referer}', name: 'app_cart_decrease', defaults: ['is_referer' => false])]
     public function decrease(
         $id,
+        $is_referer,
         Cart $cart,
+        Request $request
     ) {
         $cart->decrease($id);
 
-        $this->addFlash(
-            'success',
-            'Produit correctement supprimé de votre panier'
-        );
+        // $this->addFlash(
+        //     'success',
+        //     'Produit correctement supprimé de votre panier'
+        // );
 
+        if ($is_referer) {
+            return $this->redirect($request->headers->get('referer'));
+        }
         return $this->redirectToRoute("app_cart");
+    }
+
+    /*
+        Fonction permettant la suppression d'un produit du panier
+    */
+    #[Route('/cart/remove/{id}/{is_referer}', name: 'app_cart_remove_product', defaults: ['is_referer' => false])]
+    public function removeProduct($id, Cart $cart, $is_referer, Request $request)
+    {
+        $cart->removeProduct($id);
+
+        // $this->addFlash(
+        //     'success',
+        //     'Produit correctement supprimé de votre panier'
+        // );
+
+        if ($is_referer) {
+            return $this->redirect($request->headers->get('referer'));
+        }
+        return $this->redirectToRoute('app_cart');
     }
 
     #[Route('/cart/remove', name: 'app_cart_remove')]
@@ -87,10 +114,10 @@ class CartController extends AbstractController
     {
         $cart->remove();
 
-        $this->addFlash(
-            'success',
-            'Votre panier a bien été vidé'
-        );
+        // $this->addFlash(
+        //     'success',
+        //     'Votre panier a bien été vidé'
+        // );
 
         return $this->redirectToRoute('app_home');
     }

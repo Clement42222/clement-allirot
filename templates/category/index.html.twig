@@ -13,19 +13,18 @@
 		</p>
 
 		<div class="row">
-			{% for product in category.products %}			
-				<div class="col-md-4 text-center mt-2 mb-4 container-product">
-					<a href="{{ path('app_product', { slug: product.slug }) }}" class="text-decoration-none">
-						<img src="/uploads/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid image-product"/>
-
-						{% include 'wishlists/index.html.twig' with {
-							'linkStyle': 'margin-left: 10px;',
-							'divClass': 'd-flex align-items-center justify-content-center mt-3',
+			{% for product in category.products %}
+				<div class="col-md-4 mt-4 text-center container-product"  id="product-{{ product.id }}" style="scroll-margin-top:80px;"  >
+					{% include 'wishlists/index.html.twig' with {
+							'linkStyle': '',
+							'divClass': 'd-flex mt-1',
 							'collapse': false,
+							'btnAddToCart': false,
+							'productsInCart': productsInCart,
 					}  %}
 
-						<span class="d-block fw-bold text-black mt-2">{{ product.name }}</span>
-					</a>
+					<span class="d-block fw-bold text-black mt-2">{{ product.name }}</span>
+
 					<span class="d-block">{{ product.pricewt | price }}</span>
 				</div>
 			{% endfor %}

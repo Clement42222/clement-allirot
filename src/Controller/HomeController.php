@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classe\Cart;
 use App\Repository\HeaderRepository;
 use App\Repository\ProductRepository;
 use App\Service\MobileDetector;
@@ -17,15 +18,28 @@ class HomeController extends AbstractController
     {
         $this->mobileDetector = $mobileDetector;
     }
-    
+
     #[Route('/', name: 'app_home')]
-    public function index(HeaderRepository $headerRepository, ProductRepository $productRepository): Response
-    {
+    public function index(
+        HeaderRepository $headerRepository,
+        ProductRepository $productRepository,
+        Cart $cart
+    ): Response {
         $isMobile = $this->mobileDetector->isMobile();
+
+        // Récupérer les Cart dans session
+        $cart = $cart->getCart();
+
+        if (empty($cart)) {
+            $cart = [];
+        }
+        // Récupérer les clés du tableau $cart dans un array
+        $productsInCart = array_keys($cart);
 
         return $this->render('home/index.html.twig', [
             'headers' => $headerRepository->findAll(),
             'productsInHomepage' => $productRepository->findByIsHomePage(true),
+            'productsInCart' => $productsInCart,
             'isMobile' => $isMobile
         ]);
     }

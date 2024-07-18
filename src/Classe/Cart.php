@@ -75,6 +75,26 @@ class Cart
     }
 
     /*
+        Fonction permettant la suppression d'un produit au panier
+    */
+    public function removeProduct($idProduct)
+    {
+        // obtenir la session en cours
+        $cart = $this->getCart();
+
+        // erreur si cart n'existe pas en session
+        if (!isset($cart[$idProduct]['qty'])) {
+            return "error";
+        }
+
+        // supprimer le produit
+        unset($cart[$idProduct]);
+
+        // Enregistrer la $cart dans session
+        $this->requestStack->getSession()->set('cart', $cart);
+    }
+
+    /*
         Fonction retournant le nombre total de produit au panier
     */
     public function fullQuantity(){

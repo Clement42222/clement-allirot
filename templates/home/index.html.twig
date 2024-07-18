@@ -66,19 +66,15 @@
 		<!-- Three columns of text below the carousel -->
 		<div class="row">
 			{% for product in productsInHomepage %}
-				<div class="col-lg-4 mt-3 container-product">
-					<a title="{{ product.name }}" href="{{ path('app_product', { slug: product.slug }) }}">
-						<img src="/uploads/{{product.illustration}}" alt="{{ product.name }}" class="img-fluid"/>
-					</a>
-
-					<title class="">{{product.name}}</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-
+				<div class="col-lg-4 mt-3 container-product" id="product-{{ product.id }}" style="scroll-margin-top:80px;"> 
 				<div class="row">
 					<div class="col-md-12 mt-1 text-center">
 						{% include 'wishlists/index.html.twig' with {
-							'linkStyle': 'margin-left: 10px;',
-							'divClass': 'd-flex align-items-center justify-content-center mt-3',
+							'linkStyle': '',
+							'divClass': 'd-flex  mt-1',
 							'collapse': false,
+							'btnAddToCart': false,
+							'productsInCart': productsInCart,
 					}  %}
 						<span class="d-block fw-bold text-black mt-2">{{ product.name }}</span>
 

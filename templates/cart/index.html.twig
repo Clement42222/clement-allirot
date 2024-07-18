@@ -15,16 +15,20 @@
 
 						<div class="col-md-4 mt-1">
 							<strong class="mt-1">{{ product.object.name }}</strong>
-							<span class="d-block small mt-1">Prix Unitaire HT :
-								{{ product.object.price | price }}</span>
+							{# <span class="d-block small mt-1">Prix Unitaire HT :
+								{{ product.object.price | price }}</span> #}
+
+								<br>
+								<a href="{{ path('app_cart_remove_product', { id: product.object.id }) }}" class="btn btn-danger btn-sm my-2">Supprimer</a>
+
 						</div>
 
 						<div class="col-md-3 text-right mt-1">
 
-						<a class="btn btn-outline-primary btn-sm btn-custom-width" href="{{ path('app_cart_decrease', { id: product.object.id }) }}">-</a>
-						<span class="badge text-bg-secondary">{{ product.qty }}</span>
-						<a class="btn btn-outline-primary btn-sm btn-custom-width" href="{{ path('app_cart_add', { id: product.object.id }) }}">+</a>
-																		
+							<a class="btn btn-outline-primary btn-sm btn-custom-width border-light" href="{{ path('app_cart_decrease', { id: product.object.id }) }}">-</a>
+							<span class="badge text-bg-secondary">{{ product.qty }}</span>
+							<a class="btn btn-outline-primary btn-sm btn-custom-width border-light" href="{{ path('app_cart_add', { id: product.object.id }) }}">+</a>
+
 						</div>
 
 						<div class="col-md-3 mt-1">
